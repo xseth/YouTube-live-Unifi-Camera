@@ -39,3 +39,5 @@ if livestatus == 0:
 		subprocess.Popen(ffmpegcmd, shell=True)
 	except:
 		print 'Cannot connect to NVR for the moment I will retry in 5mn set in cronjob'
+else:
+	print 'Already on live'
