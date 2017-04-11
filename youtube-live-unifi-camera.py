@@ -31,6 +31,7 @@ livestatus = (data['pageInfo']['totalResults'])
 if livestatus == 0:
 	print 'YouTube Live broadcast is offline'
 	try:
+		subprocess.Popen('killall -9 ffmpeg', shell=True)
 		#CHECK INTERNET CONNECTION AND PORT IF OK EXEC ffmpeg command
 		s.connect((host, port))
 		s.shutdown(2)
