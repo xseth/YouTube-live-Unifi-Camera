@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-import socket, subprocess, urllib, json
+import socket, subprocess, urllib, json, psutil
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.settimeout(5)
@@ -28,10 +28,25 @@ data = json.load(urllib.urlopen(url))
 
 livestatus = (data['pageInfo']['totalResults'])
 
+#CHECK FFMPEG ALREADY RUNNING
+r = 0
+for pid in psutil.pids():
+		p = psutil.Process(pid)
+		if p.name() == "ffmpeg":
+			r = r + 1
+
+def killffmpeg():
+	for pid in psutil.pids():
+		p = psutil.Process(pid)
+		if p.name() == "ffmpeg":
+			p.kill()
+
 if livestatus == 0:
 	print 'YouTube Live broadcast is offline'
+	if r >= 1:
+		print 'Killall ffmpeg process'
+		killffmpeg()
 	try:
-		subprocess.Popen('killall -9 ffmpeg', shell=True)
 		#CHECK INTERNET CONNECTION AND PORT IF OK EXEC ffmpeg command
 		s.connect((host, port))
 		s.shutdown(2)
