@@ -17,7 +17,7 @@ YOUTUBE_API_SERVICE_NAME = 'youtube'
 YOUTUBE_API_VERSION = "v3"
 livekey = 'YOUR_YOUTUBE_LIVE_KEY' #<-- CHANGE ME
 channelId = 'YOUR_YOUTUBE_CHANNEL_ID' #<-- CHANGE ME
-rtmp = 'rtmp://a.rtmp.youtube.com/live2/'
+rtmp = 'rtmp://a.rtmp.youtube.com/live2'
 
 #DEFINE FFMPEG COMMAND
 ffmpegcmd = 'ffmpeg -loglevel 16 -re -rtsp_transport tcp -i rtsp://' +str(host)+ ':' +str(port)+'/' +str(camID)+' -c:v libx264 -preset veryfast -maxrate 3000k -bufsize 6000k -pix_fmt yuv420p -g 50 -c:a aac -b:a 160k -ac 2 -ar 44100 -f flv '+str(rtmp)+'/' + str(livekey)
