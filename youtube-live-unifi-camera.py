@@ -30,8 +30,8 @@ livestatus = (data['pageInfo']['totalResults'])
 
 #CHECK FFMPEG ALREADY RUNNING
 r = 0
-for pid in psutil.pids():
-		p = psutil.Process(pid)
+for i in psutil.pids():
+		p = psutil.Process(i)
 		if p.name() == "ffmpeg":
 			r = r + 1
 
