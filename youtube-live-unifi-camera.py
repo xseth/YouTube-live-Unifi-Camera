@@ -29,6 +29,7 @@ data = json.load(urllib.urlopen(url))
 livestatus = (data['pageInfo']['totalResults'])
 
 #CHECK FFMPEG ALREADY RUNNING
+i = 0
 r = 0
 for i in psutil.pids():
 		p = psutil.Process(i)
